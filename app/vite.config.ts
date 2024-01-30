@@ -26,12 +26,12 @@ const manifestForPlugIn: Partial<VitePWAOptions> = {
     "orientation": "any",
     "display": "standalone",
     "lang": "en-US",
-    "start_url": "https://runon.cloud/bus-pwa/",
-    "scope": "https://runon.cloud/bus-pwa/",
+    "start_url": "https://runon.cloud/dashboard-app/",
+    "scope": "https://runon.cloud/dashboard-app/",
     "name": "Radical Generosity Bus App",
     "short_name": "Bus App",
     "description": "Application for YesLiberia to support Radical Generosity Buses",
-    "id": "https://runon.cloud/bus-pwa/",
+    "id": "https://runon.cloud/dashboard-app/",
     "screenshots": [
       {
         "src": "screenshot.png",
@@ -53,5 +53,5 @@ export default defineConfig({
     mkcert(),
     VitePWA(manifestForPlugIn)
   ],
-  base: '/bus-pwa/'
+  base: '/dashboard-app/'
 })

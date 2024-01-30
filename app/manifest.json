@@ -19,10 +19,10 @@
     "display": "standalone",
     "dir": "auto",
     "lang": "en-US",
-    "start_url": "https://runon.cloud/bus-pwa/",
-    "scope": "https://runon.cloud/bus-pwa/",
+    "start_url": "https://runon.cloud/dashboard-app/",
+    "scope": "https://runon.cloud/dashboard-app/",
     "name": "Radical Generosity Bus App",
     "short_name": "Radical Generosity Bus",
     "description": "Application for YesLiberia to support Radical Generosity Buses",
-    "id": "https://runon.cloud/bus-pwa/"
+    "id": "https://runon.cloud/dashboard-app/"
 }

@@ -8,8 +8,8 @@
             "type": "chrome",
             "request": "launch",
             "name": "Vite: Chrome",
-            "url": "https://localhost:4000/bus-pwa/",
-            "webRoot": "${workspaceFolder}/bus-pwa"
+            "url": "https://localhost:4000/dashboard-app/",
+            "webRoot": "${workspaceFolder}/dashboard-app"
         }
     ]
 }
