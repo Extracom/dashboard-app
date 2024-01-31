@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
 import { Menu, ArrowBack } from '@mui/icons-material';
-import '../App.css';
+import '../styles/App.css';
 import AppDrawer from '../components/AppDrawer';
 
 interface HeaderProps {

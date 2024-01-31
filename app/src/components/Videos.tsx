@@ -3,7 +3,7 @@ import { Box, Fab, LinearProgress, Avatar } from '@mui/material';
 import { AddRounded } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useImmer } from 'use-immer';
-import { Video } from '../interfaces';
+import { Video } from '../interfaces/interfaces';
 import useFetchData from '../hooks/useFetchData';
 import { QuickList, QuickListItem } from '../components/QuickListComponents';
 

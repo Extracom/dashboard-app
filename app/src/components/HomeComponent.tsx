@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
-import { Quote, TodaysFocus } from '../interfaces';
-import { decodeToken } from '../utils';
+import { Quote, TodaysFocus } from '../interfaces/interfaces';
+import { decodeToken } from '../utils/utils';
 import largeLogoImage from '../assets/BusAppHomePageLogo.png';
 import useFetchData from '../hooks/useFetchData';
 import { Box, LinearProgress, Typography } from '@mui/material';

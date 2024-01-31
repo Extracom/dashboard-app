@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../App.css';
+import '../styles/App.css';
 import { Box, Card, CardContent, Typography, Avatar, IconButton } from '@mui/material';
 // import { ThumbUp, ThumbUpOutlined, WavingHandOutlined } from '@mui/icons-material';
 

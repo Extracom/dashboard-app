@@ -10,7 +10,7 @@ import CheckOutPage from './pages/CheckOutPage';
 import BusRouteLogsPage from './pages/BusRouteLogsPage';
 import EditBusRouteLogPage from './pages/EditBusRouteLogPage';
 import HomePage from './pages/HomePage';
-import './App.css';
+import './styles/App.css';
 
 
 const App: React.FC = () => {

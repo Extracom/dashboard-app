@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Api from '../Api';
-import { getDataFromLocalStorage, putDataToLocalStorage } from '../utils';
+import Api from '../api/Api';
+import { getDataFromLocalStorage, putDataToLocalStorage } from '../utils/utils';
 
 
 const useFetchData = (url: string, localStorageKey: string) => {

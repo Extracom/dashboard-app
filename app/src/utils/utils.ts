@@ -1,6 +1,9 @@
 import { jwtDecode } from 'jwt-decode';
+//import { appName } from '../constants/constants';
 
-const storageKeyPrefix = 'bus_app_';
+const storageKeyPrefix = 'dashboard-app-'  //`${appName}-`;
+
+
 
 export function decodeToken(): null | { [key: string]: any } {
     const token = localStorage.getItem(`${storageKeyPrefix}token`);
@@ -17,6 +20,11 @@ export function decodeToken(): null | { [key: string]: any } {
     }
     return null;
 }
+
+export function saveToken(token: string): void {
+    localStorage.setItem(`${storageKeyPrefix}token`, token);
+}
+
 
 export function getDataFromLocalStorage(name: string): null | { [key: string]: any } {
     const data = localStorage.getItem(`${storageKeyPrefix}${name}`);

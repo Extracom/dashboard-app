@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Box, LinearProgress, Fab } from '@mui/material';
 import { AddRounded, Reorder } from '@mui/icons-material';
-import { BusRouteLog } from '../interfaces';
+import { BusRouteLog } from '../interfaces/interfaces';
 import { useImmer } from 'use-immer';
 import useFetchData from '../hooks/useFetchData';
 import { useNavigate } from 'react-router-dom';

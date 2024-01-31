@@ -4,7 +4,7 @@ import useFetchData from '../hooks/useFetchData';
 import useCreateData from '../hooks/useCreateData';
 import { Button, Stack, Alert, Container, LinearProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Video, blankVideo } from '../interfaces';
+import { Video, blankVideo } from '../interfaces/interfaces';
 import { useLocation } from 'react-router-dom';
 import { QuickTextField, QuickDateField, QuickSelectField, PropagateToChildren, Option } from './QuickComponents';
 //import { convertDateFormat } from "../utils";

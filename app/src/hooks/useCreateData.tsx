@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Api from '../Api';
+import Api from '../api/Api';
 
 
 const useCreateData = (url: string) => {

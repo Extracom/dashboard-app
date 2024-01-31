@@ -9,5 +9,6 @@ export interface ApiError {
 }
 
 export default axios.create({
-    baseURL: 'https://7udlon6f8l.execute-api.us-east-1.amazonaws.com/dev/api'
+    // baseURL: 'https://7udlon6f8l.execute-api.us-east-1.amazonaws.com/dev/api'
+    baseURL: 'https://powerwms.nl/api'
 });

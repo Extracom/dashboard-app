@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Box, LinearProgress, Stack, Fab, Snackbar, Alert, Avatar } from '@mui/material';
 import { QrCode2Rounded, CloseRounded } from '@mui/icons-material';
-import { Person } from '../interfaces';
+import { Person } from '../interfaces/interfaces';
 import PersonCard from '../components/PersonCard';
 import QRCodeComponent from '../components/QRCodeComponent';
 import { useImmer } from 'use-immer';
-import '../App.css';
-import { decodeToken } from '../utils';
+import '../styles/App.css';
+import { decodeToken } from '../utils/utils';
 import useFetchData from '../hooks/useFetchData';
 
 interface NotificationProps {

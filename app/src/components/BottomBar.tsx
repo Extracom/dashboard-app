@@ -2,7 +2,7 @@ import React from 'react';
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
 import { HomeRounded, VideoLibraryRounded, Checklist, LoginRounded, LogoutRounded } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import '../App.css';
+import '../styles/App.css';
 
 interface ComponentProps {
     showIcons?: boolean;

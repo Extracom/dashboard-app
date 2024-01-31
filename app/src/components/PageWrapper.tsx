@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import BottomBar from './BottomBar';
-import { decodeToken } from '../utils';
+import { decodeToken } from '../utils/utils';
 import { VisualViewport } from './VisualViewport';
 
 

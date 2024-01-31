@@ -1,4 +1,11 @@
 
+export interface Credentials {
+    email: string;
+    password: string;
+}
+
+
+///////// Legacy interfaces below //////////////////
 
 export interface VideoCategory {
     _RowNumber: number;

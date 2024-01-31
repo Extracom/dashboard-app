@@ -6,14 +6,20 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { SignInFields, blankSignInFields } from '../interfaces';
+import { SignInFields, blankSignInFields, Credentials } from '../interfaces/interfaces';
 import { Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import useSignIn from '../hooks/useSignIn';
 
 const SignIn: React.FC = () => {
-    const [signIn, setSignIn] = useState<SignInFields>(blankSignInFields());
-    const [errors, setErrors] = useState<SignInFields>(blankSignInFields());
+    const { error, loading, signInUser } = useSignIn();
+    const [credentials, setCredentials] = useState<Credentials>({ email: '', password: '' });
+    const [errors, setErrors] = useState<Credentials>({ email: '', password: '' });
     const [submitted, setSubmitted] = useState(false);
+
+    const [signIn, setSignIn] = useState<SignInFields>(blankSignInFields());
+    //const [errors, setErrors] = useState<SignInFields>(blankSignInFields());
+
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
@@ -26,54 +32,60 @@ const SignIn: React.FC = () => {
             return;
         }
 
-        setIsLoading(true);
+        const result = await signInUser(credentials);
 
-        signIn.UserTable = "Users";
-        signIn.UserNameField = "Email";
-        signIn.PasswordField = "Pin";
-
-        const response = await fetch('https://7udlon6f8l.execute-api.us-east-1.amazonaws.com/dev/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(signIn)
-        });
-
-        if (response.status !== 200) {
-            errors.Password = 'Email or password is incorrect';
-            setErrors(errors);
-
-        } else {
-            const data = await response.json();
-            localStorage.setItem('bus_app_token', data.token);
+        if (result === 200) {
             navigate(`/`);
         }
 
-        setIsLoading(false);
+        // setIsLoading(true);
+
+        // signIn.UserTable = "Users";
+        // signIn.UserNameField = "Email";
+        // signIn.PasswordField = "Pin";
+
+        // const response = await fetch('https://7udlon6f8l.execute-api.us-east-1.amazonaws.com/dev/api/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(signIn)
+        // });
+
+        // if (response.status !== 200) {
+        //     errors.Password = 'Email or password is incorrect';
+        //     setErrors(errors);
+
+        // } else {
+        //     const data = await response.json();
+        //     localStorage.setItem('bus_app_token', data.token);
+        //     navigate(`/`);
+        // }
+
+        // setIsLoading(false);
     };
 
     useEffect(() => {
         validateFields();
-    }, [signIn]);
+    }, [credentials]);
 
     const validateFields = () => {
         let isValid = true;
-        let errors = blankSignInFields();
+        let errors = { email: '', password: '' };
 
-        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(signIn.UserName)) {
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(credentials.email)) {
             isValid = false;
-            errors.UserName = 'Please enter a valid email address (e.g. name@gmail.com)';
+            errors.email = 'Please enter a valid email address (e.g. name@gmail.com)';
         }
 
-        if (signIn.UserName.length <= 0) {
+        if (credentials.email.length <= 0) {
             isValid = false;
-            errors.UserName = 'This entry is required';
+            errors.email = 'This entry is required';
         }
 
-        if (signIn.Password.length <= 0) {
+        if (credentials.password.length <= 0) {
             isValid = false;
-            errors.Password = 'This entry is required';
+            errors.password = 'This entry is required';
         }
 
         setErrors(errors);
@@ -81,15 +93,15 @@ const SignIn: React.FC = () => {
     };
 
     const handleInputChange = (event: React.ChangeEvent<{ name?: string; value: unknown }>) => {
-        setSignIn({
-            ...signIn,
+        setCredentials({
+            ...credentials,
             [event.target.name as string]: event.target.value
         });
     };
 
     return (
         <Stack>
-            {isLoading && <LinearProgress />}
+            {loading && <LinearProgress />}
             <Container maxWidth="xs">
                 {/* <CssBaseline /> */}
                 <Box
@@ -112,12 +124,12 @@ const SignIn: React.FC = () => {
                             required
                             fullWidth
                             label="Email Address"
-                            name="UserName"
+                            name="email"
                             onChange={handleInputChange}
                             autoFocus
-                            value={signIn.UserName}
-                            error={submitted && !!errors.UserName}
-                            helperText={submitted && errors.UserName}
+                            value={credentials.email}
+                            error={submitted && !!errors.email}
+                            helperText={submitted && errors.email}
                             InputLabelProps={{
                                 shrink: true,
                             }}
@@ -126,13 +138,13 @@ const SignIn: React.FC = () => {
                             margin="normal"
                             required
                             fullWidth
-                            name="Password"
+                            name="password"
                             label="Password"
                             type="password"
                             onChange={handleInputChange}
-                            value={signIn.Password}
-                            error={submitted && !!errors.Password}
-                            helperText={submitted && errors.Password}
+                            value={credentials.password}
+                            error={submitted && !!errors.password}
+                            helperText={submitted && errors.password}
                             InputLabelProps={{
                                 shrink: true,
                             }}
