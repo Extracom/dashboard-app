@@ -37,8 +37,8 @@ const Component: React.FC<ComponentProps> = ({ mode }) => {
         message: '',
     });
     const navigate = useNavigate();
-    const { data: busesData, error: busesError, loading: busesLoading } = useFetchData(`/Buses`, `buses`);
-    const { data: staffData, error: staffError, loading: staffLoading } = useFetchData(`/Staff`, `staff`);
+    const { data: busesData, error: busesError, loading: busesLoading } = useFetchData(`/Buses`, {});
+    const { data: staffData, error: staffError, loading: staffLoading } = useFetchData(`/Staff`, {});
     const { error: createError, loading: createLoading, createData, updateData } = useCreateData(`/Bus Route Log`);
 
     useEffect(() => {

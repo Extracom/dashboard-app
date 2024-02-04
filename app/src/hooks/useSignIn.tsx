@@ -34,8 +34,9 @@ const useSignIn = () => {
 
         } catch (error: any) {
             // If an error occurs, set the error message and stop loading
-            const errorMessage = error.response?.data?.message || error.message;
-            setError(errorMessage);
+            //const errorMessage = error.response?.data?.message || error.message;
+            const errorText = 'Email or password is incorrect';
+            setError(errorText);
             setLoading(false);
             return false;
         }

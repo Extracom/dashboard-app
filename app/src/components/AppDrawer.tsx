@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Drawer, List, Divider, ListItem, ListItemIcon, ListItemButton, ListItemText } from '@mui/material';
-import { Checklist, LockOpenRounded } from '@mui/icons-material';
+import { Box, Drawer, List, ListItem, ListItemIcon, ListItemButton, ListItemText } from '@mui/material';
+import { LockOpenRounded } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 interface AppDrawerProps {
@@ -13,11 +13,11 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ open, toggleDrawer }) => {
 
     const drawerItems = {
         beforeDivider: [
-            { icon: <Checklist />, text: 'Daily Log', navigate: '/busroutelogs' },
+            { icon: <LockOpenRounded />, text: 'Sign Out', navigate: '/signin' },
         ],
-        afterDivider: [
-            { icon: <LockOpenRounded />, text: 'Sign In', navigate: '/signin' },
-        ]
+        // afterDivider: [
+        //     { icon: <LockOpenRounded />, text: 'Sign In', navigate: '/signin' },
+        // ]
     }
 
     const list = () => (
@@ -28,18 +28,19 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ open, toggleDrawer }) => {
             onKeyDown={toggleDrawer(false)}
         >
             <List>
-                {drawerItems.beforeDivider.map((item) => (
-                    <ListItem key={item.text} disablePadding>
-                        <ListItemButton onClick={() => navigate(item.navigate)}>
-                            <ListItemIcon>
-                                {item.icon}
-                            </ListItemIcon>
-                            <ListItemText primary={item.text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                {(drawerItems && drawerItems.beforeDivider && drawerItems.beforeDivider.length > 0) &&
+                    drawerItems.beforeDivider.map((item) => (
+                        <ListItem key={item.text} disablePadding>
+                            <ListItemButton onClick={() => navigate(item.navigate)}>
+                                <ListItemIcon>
+                                    {item.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={item.text} />
+                            </ListItemButton>
+                        </ListItem>
+                    ))}
             </List>
-            <Divider />
+            {/* <Divider />
             <List>
                 {drawerItems.afterDivider.map((item) => (
                     <ListItem key={item.text} disablePadding>
@@ -51,7 +52,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({ open, toggleDrawer }) => {
                         </ListItemButton>
                     </ListItem>
                 ))}
-            </List>
+            </List> */}
         </Box>
     );
 

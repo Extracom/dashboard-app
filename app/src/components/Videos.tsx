@@ -25,7 +25,7 @@ const Videos: React.FC<VideosProps> = ({ categoryid }) => {
 
     const navigate = useNavigate();
 
-    const { data: videosData, error: videosError, loading: videosLoading } = useFetchData(`/Preloaded Videos`, `videos`);
+    const { data: videosData, error: videosError, loading: videosLoading } = useFetchData(`/Preloaded Videos`, {});
 
     useEffect(() => {
 

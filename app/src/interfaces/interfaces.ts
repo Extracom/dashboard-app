@@ -4,6 +4,10 @@ export interface Credentials {
     password: string;
 }
 
+export interface CustomData {
+    [key: string]: any;
+}
+
 
 ///////// Legacy interfaces below //////////////////
 

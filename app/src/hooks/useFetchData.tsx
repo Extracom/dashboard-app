@@ -1,27 +1,45 @@
 import { useEffect, useState } from "react";
 import Api from '../api/Api';
-import { getDataFromLocalStorage, putDataToLocalStorage } from '../utils/utils';
+import { getToken } from '../utils/utils';
 
 
-const useFetchData = (url: string, localStorageKey: string) => {
+const useFetchData = (url: string, body?: { [key: string]: any; }) => {
     const [data, setData] = useState<{ [key: string]: any; } | null>(null);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
     const refreshData = async () => {
 
         setLoading(true);
-        const localData = getDataFromLocalStorage(localStorageKey);
-        if (localData) {
-            setData(localData);
+
+        const token = getToken();
+        if (!token) {
+            const errorMessage = "User session expired. Please sign in again.";
+            setError(errorMessage);
+            setLoading(false);
+            return;
         }
+
+        const requestConfig = {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            }
+        };
+
+
+
+        // const localData = getDataFromLocalStorage(localStorageKey);
+        // if (localData) {
+        //     setData(localData);
+        // }
         try {
-            const apiResponse = await Api.get(url);
+            const apiResponse = await Api.post(url, body, requestConfig);
             if (!apiResponse.data) {
                 throw new Error('No data in API response');
             }
             setData(apiResponse.data);
-            putDataToLocalStorage(localStorageKey, apiResponse.data);
+            //putDataToLocalStorage(localStorageKey, apiResponse.data);
         } catch (error: any) {
             const errorMessage = error.response?.data?.message || error.message;
             setError(errorMessage);
@@ -33,7 +51,7 @@ const useFetchData = (url: string, localStorageKey: string) => {
 
     useEffect(() => {
         refreshData();
-    }, [url, localStorageKey]);
+    }, [url]);
 
     return { data, error, loading, refreshData };
 };

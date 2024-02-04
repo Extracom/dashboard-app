@@ -4,7 +4,7 @@ import HomeComponent from '../components/HomeComponent';
 
 const HomePage: React.FC = () => {
     return (
-        <PageWrapper showHeader={true} showFooter={true} showMenu={true}>
+        <PageWrapper showHeader={true} showFooter={false} showMenu={true}>
             <HomeComponent />
         </PageWrapper>
     );

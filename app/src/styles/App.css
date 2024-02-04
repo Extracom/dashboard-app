@@ -10,6 +10,7 @@ body,
 }
 
 
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -51,7 +52,7 @@ body,
 
 
 .mainAppBar {
-  background-color: #ffa521 !important;
+  background-color: #1890ff !important;
 }
 
 .main-progress-bar .MuiLinearProgress-bar {

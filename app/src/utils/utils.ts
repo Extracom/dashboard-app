@@ -25,6 +25,11 @@ export function saveToken(token: string): void {
     localStorage.setItem(`${storageKeyPrefix}token`, token);
 }
 
+export function getToken(): string | null {
+    const token = localStorage.getItem(`${storageKeyPrefix}token`);
+    return token ? token : null;
+}
+
 
 export function getDataFromLocalStorage(name: string): null | { [key: string]: any } {
     const data = localStorage.getItem(`${storageKeyPrefix}${name}`);

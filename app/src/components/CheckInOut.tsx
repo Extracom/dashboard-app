@@ -44,7 +44,7 @@ const CheckInOut: React.FC<ComponentProps> = ({ mode = "Check in" }) => {
         isNotificationOpen: false,
         qrCodeHistory: {},
     });
-    const { data: passengersData, error: passengersError, loading: passengersLoading } = useFetchData(`/Passengers`, `passengers`);
+    const { data: passengersData, error: passengersError, loading: passengersLoading } = useFetchData(`/Passengers`, {});
     const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
     const [datetime, setDateTime] = useState(new Date());
 

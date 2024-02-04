@@ -18,7 +18,7 @@ const Component: React.FC = () => {
         isLoading: false,
     });
     // const navigate = useNavigate();
-    const { data: busRouteLogsData, error: busRouteLogsError, loading: busRouteLogsLoading } = useFetchData(`/Bus Route Log`, `busRouteLogs`);
+    const { data: busRouteLogsData, error: busRouteLogsError, loading: busRouteLogsLoading } = useFetchData(`/Bus Route Log`, {});
     const navigate = useNavigate();
 
     useEffect(() => {

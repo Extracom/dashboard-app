@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { SignInFields, blankSignInFields, Credentials } from '../interfaces/interfaces';
+import { Credentials } from '../interfaces/interfaces';
 import { Stack } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import useSignIn from '../hooks/useSignIn';
@@ -17,10 +17,10 @@ const SignIn: React.FC = () => {
     const [errors, setErrors] = useState<Credentials>({ email: '', password: '' });
     const [submitted, setSubmitted] = useState(false);
 
-    const [signIn, setSignIn] = useState<SignInFields>(blankSignInFields());
-    //const [errors, setErrors] = useState<SignInFields>(blankSignInFields());
+    // const [signIn, setSignIn] = useState<SignInFields>(blankSignInFields());
+    // //const [errors, setErrors] = useState<SignInFields>(blankSignInFields());
 
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -143,8 +143,8 @@ const SignIn: React.FC = () => {
                             type="password"
                             onChange={handleInputChange}
                             value={credentials.password}
-                            error={submitted && !!errors.password}
-                            helperText={submitted && errors.password}
+                            error={submitted && (!!errors.password || !!error)}
+                            helperText={submitted && (errors.password || error)}
                             InputLabelProps={{
                                 shrink: true,
                             }}

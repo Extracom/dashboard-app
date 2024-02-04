@@ -52,7 +52,7 @@ const Header: React.FC<HeaderProps> = ({ showMenu, showLogo, appBarTitle, showBa
                     </IconButton>}
 
                     <Typography variant="h6" component="div">
-                        {appBarTitle ? appBarTitle : "Radical Generosity Bus"}
+                        {appBarTitle ? appBarTitle : "WMS Dashboard"}
                         {showLogo}
                     </Typography>
                 </Toolbar>

@@ -35,7 +35,7 @@ const Component: React.FC<ComponentProps> = ({ mode }) => {
         message: '',
     });
     const navigate = useNavigate();
-    const { data: categoriesData, error: categoriesError, loading: categoriesLoading } = useFetchData(`/Videos Categories`, `videoCategories`);
+    const { data: categoriesData, error: categoriesError, loading: categoriesLoading } = useFetchData(`/Videos Categories`, {});
     const { error: createError, loading: createLoading, createData, updateData } = useCreateData(`/Preloaded Videos`);
 
     useEffect(() => {

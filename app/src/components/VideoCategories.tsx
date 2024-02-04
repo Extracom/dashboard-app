@@ -18,7 +18,7 @@ const VideoCategories: React.FC = () => {
         isLoading: false,
     });
     const navigate = useNavigate();
-    const { data: categoriesData, error: categoriesError, loading: categoriesLoading } = useFetchData(`/Videos Categories`, `videoCategories`);
+    const { data: categoriesData, error: categoriesError, loading: categoriesLoading } = useFetchData(`/Videos Categories`, {});
 
     useEffect(() => {
         setState((draft) => {

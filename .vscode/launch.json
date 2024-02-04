@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Vite: Chrome",
             "url": "https://localhost:4000/dashboard-app/",
-            "webRoot": "${workspaceFolder}/dashboard-app"
+            "webRoot": "${workspaceFolder}/app/"
         }
     ]
 }
