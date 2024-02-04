@@ -4,7 +4,7 @@ import { Box, LinearProgress, Stack, Fab, Snackbar, Alert, Avatar } from '@mui/m
 import { QrCode2Rounded, CloseRounded } from '@mui/icons-material';
 import { Person } from '../interfaces/interfaces';
 import PersonCard from '../components/PersonCard';
-import QRCodeComponent from '../components/QRCodeComponent';
+//import QRCodeComponent from '../components/QRCodeComponent';
 import { useImmer } from 'use-immer';
 import '../styles/App.css';
 import { decodeToken } from '../utils/utils';
@@ -294,7 +294,7 @@ const CheckInOut: React.FC<ComponentProps> = ({ mode = "Check in" }) => {
                                 GPS: {location.latitude}, {location.longitude}<br />
                                 {/* Time: {datetime.toTimeString()} */}
                             </p>
-                            <QRCodeComponent showBox={true} qrCodeSuccessCallback={onNewScanResult} delay={3000} />
+                            {/* <QRCodeComponent showBox={true} qrCodeSuccessCallback={onNewScanResult} delay={3000} /> */}
                         </Box>
                     </Box>
                     <Box sx={{ position: 'fixed', bottom: 72, right: 16 }}>
