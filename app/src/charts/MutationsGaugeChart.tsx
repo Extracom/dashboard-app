@@ -15,11 +15,15 @@ const Component: React.FC<ComponentProps> = ({ data, user }) => {
     if (!data) return (<></>);
 
     let averageQuantities: Number = 0;
+    let currentQuantities: Number = 0;
 
     const currentUserData = data.mutationsByUserAndDate[user];
 
     if (currentUserData) {
         const currentUserDataArray = Object.values(currentUserData);
+
+        // temp fix to take last date mutation
+        currentQuantities = Number(currentUserDataArray[0]);
 
         // // Map the sorted array to get the quantities
         // const quantitiesArray = data.dateMutationsDual.map((item: any[]) => item[1]);
@@ -86,13 +90,13 @@ const Component: React.FC<ComponentProps> = ({ data, user }) => {
 
                     formatter: function (value: number) {
                         // Format the value as needed
-                        return `0 / ${value}`; // This will format the value to 0 decimal places
+                        return `${value} / ${averageQuantities}`; // This will format the value to 0 decimal places
                     },
                     fontSize: 16
                 },
                 data: [
                     {
-                        value: averageQuantities,
+                        value: currentQuantities,
                         //name: 'Avg. Mutation'
                     }
                 ]
