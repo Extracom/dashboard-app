@@ -1,6 +1,6 @@
 import React from 'react';
-import PageWrapper from '../components/PageWrapper';
-import BusRouteLogs from '../components/BusRouteLogs';
+import PageWrapper from '../../components/PageWrapper';
+import BusRouteLogs from '../../components/legacy/BusRouteLogs';
 
 const Page: React.FC = () => {
     return (

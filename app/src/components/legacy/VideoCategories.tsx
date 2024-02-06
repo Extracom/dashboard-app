@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { LinearProgress } from '@mui/material';
 import { VideoLibrary } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import { VideoCategory } from '../interfaces/interfaces';
+import { VideoCategory } from '../../interfaces/interfaces';
 import { useImmer } from 'use-immer';
-import useFetchData from '../hooks/useFetchData';
-import { QuickList, QuickListItem } from '../components/QuickListComponents';
+import useFetchData from '../../hooks/useFetchData';
+import { QuickList, QuickListItem } from '../QuickListComponents';
 
 interface ComponentState {
     categories: VideoCategory[];

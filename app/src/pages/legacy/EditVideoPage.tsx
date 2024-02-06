@@ -1,6 +1,6 @@
 import React from 'react';
-import PageWrapper from '../components/PageWrapper';
-import EditVideo from '../components/EditVideo';
+import PageWrapper from '../../components/PageWrapper';
+import EditVideo from '../../components/legacy/EditVideo';
 import { useNavigate } from 'react-router-dom';
 
 interface EditVideoPageProps {

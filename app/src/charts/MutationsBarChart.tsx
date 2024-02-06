@@ -5,6 +5,7 @@ import { CustomData } from '../interfaces/interfaces';
 
 interface ComponentProps {
     data?: CustomData | null; // properties passed as shortcode attributes
+    wide?: boolean;
 }
 
 const Component: React.FC<ComponentProps> = ({ data }) => {
@@ -12,26 +13,9 @@ const Component: React.FC<ComponentProps> = ({ data }) => {
 
     if (!data) return (<></>);
 
-    const groupedData = data.reduce((acc: { [x: string]: any; }, cur: { createdDate: string; }) => {
-        // Extract the date part of the createdDate string
-        const date = cur.createdDate.split('T')[0];
 
-        // If this date is not yet a key in the accumulator, add it with a count of 1
-        // Otherwise, increment the count for this date
-        acc[date] = (acc[date] || 0) + 1;
-
-        return acc;
-    }, {});
-
-    const groupedDataArray = Object.entries(groupedData);
-
-    // Sort the array by date in ascending order
-    const sortedGroupedDataArray = groupedDataArray.sort((a, b) => {
-        return new Date(a[0]).getTime() - new Date(b[0]).getTime();
-    });
-
-    const datesArray = sortedGroupedDataArray.map(item => item[0]);
-    const quantitiesArray = sortedGroupedDataArray.map(item => item[1]);
+    const datesArray = data.dateMutationsDual.map((item: any[]) => item[0]);
+    const quantitiesArray = data.dateMutationsDual.map((item: any[]) => item[1]);
 
     const options = {
         grid: {

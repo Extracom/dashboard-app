@@ -1,6 +1,6 @@
 import React from 'react';
-import PageWrapper from '../components/PageWrapper';
-import CheckInOut from '../components/CheckInOut';
+import PageWrapper from '../../components/PageWrapper';
+import CheckInOut from '../../components/legacy/CheckInOut';
 
 
 const CheckInPage: React.FC = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import PageWrapper from '../components/PageWrapper';
-import EditBusRouteLog from '../components/EditBusRouteLog';
+import PageWrapper from '../../components/PageWrapper';
+import EditBusRouteLog from '../../components/legacy/EditBusRouteLog';
 import { useNavigate } from 'react-router-dom';
 
 interface PageProps {

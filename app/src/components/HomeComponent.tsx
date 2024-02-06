@@ -1,13 +1,12 @@
-import React from 'react';
-//import { useImmer } from 'use-immer';
-//import { Quote, TodaysFocus } from '../interfaces/interfaces';
-// import { decodeToken } from '../utils/utils';
-// import largeLogoImage from '../assets/BusAppHomePageLogo.png';
-import useFetchData from '../hooks/useFetchData';
+import React, { Key } from 'react';
+
+import useFetchDashboardData from '../hooks/useFetchDashboardData';
 import { Box, LinearProgress } from '@mui/material';
 import ResponsiveGrid from '../components/ResponsiveGrid';
 import MutationsBarChart from '../charts/MutationsBarChart';
 import MutationsGaugeChart from '../charts/MutationsGaugeChart';
+import MutationsHeatmapChart from '../charts/MutationsHeatmapChart';
+
 
 // interface ComponentState {
 //     quotes: Quote[];
@@ -22,7 +21,10 @@ const HomeComponent: React.FC = () => {
     //     isLoading: false,
     // });
     //const token = decodeToken();
-    const { data, error, loading } = useFetchData(`/stockmutation/list`, { "length": 200 });
+    const { data, error, loading } = useFetchDashboardData({
+        fromDate: new Date("2023-09-01"),
+        toDate: new Date("2024-05-01") // replace with the actual toDate
+    });
     // const { data: todaysFocusData, error: todaysFocusError, loading: todaysFocusLoading } = useFetchData(`/Todays Focus`, `todaysFocus`);
 
     // useEffect(() => {
@@ -77,13 +79,14 @@ const HomeComponent: React.FC = () => {
             {loading && <LinearProgress />}
 
             <ResponsiveGrid>
-                <MutationsGaugeChart data={data && data.data ? data.data : null} />
-                <MutationsBarChart data={data && data.data ? data.data : null} />
-                <MutationsBarChart data={data && data.data ? data.data : null} />
-                <MutationsGaugeChart data={data && data.data ? data.data : null} />
-                <MutationsBarChart data={data && data.data ? data.data : null} />
+                {data && data.users && data.users.length > 0 && data.users.map((user: string, index: Key) =>
+                    <MutationsGaugeChart key={index} data={data ? data : null} user={user} />
+                )}
+                <MutationsHeatmapChart wide={true} data={data ? data : null} />
+                <MutationsBarChart wide={true} data={data ? data : null} />
                 {error && <Box>{error}</Box>}
             </ResponsiveGrid>
+
 
             {/* <Container component="main" maxWidth="md" sx={{ mt: 2, mb: 2 }}>
                 <Grid container spacing={2}>

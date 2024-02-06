@@ -5,7 +5,8 @@ import Header from './Header';
 import BottomBar from './BottomBar';
 import { decodeToken } from '../utils/utils';
 import { VisualViewport } from './VisualViewport';
-import '../styles/App.css';
+//import '../styles/App.css';
+import theme from '../styles/theme';
 
 
 
@@ -51,7 +52,7 @@ const PageWrapper: React.FC<PageWrapperProps> = ({ showHeader, showFooter, showF
         <VisualViewport   >
             <Box sx={{ display: 'flex', flexDirection: 'column', height: '100dvh' }}>
                 {showHeader && <Header showMenu={showMenu} showLogo={showLogo} appBarTitle={appBarTitle} showBack={showBack} onBack={onBack} />}
-                <Box sx={{ flexGrow: 1, overflow: 'auto', backgroundColor: '#fafafb' }} >
+                <Box sx={{ flexGrow: 1, overflow: 'auto', ...theme.boxes.body }} >
                     {children}
                 </Box>
                 {showFooter && <BottomBar showIcons={showFooterIcons} />}

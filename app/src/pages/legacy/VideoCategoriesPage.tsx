@@ -1,6 +1,6 @@
 import React from 'react';
-import PageWrapper from '../components/PageWrapper';
-import VideoCategories from '../components/VideoCategories';
+import PageWrapper from '../../components/PageWrapper';
+import VideoCategories from '../../components/legacy/VideoCategories';
 
 const VideoCategoriesPage: React.FC = () => {
     return (

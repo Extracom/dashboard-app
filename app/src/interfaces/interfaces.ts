@@ -4,9 +4,17 @@ export interface Credentials {
     password: string;
 }
 
+export interface DashboardFilter {
+    fromDate: Date;
+    toDate: Date;
+}
+
+
 export interface CustomData {
     [key: string]: any;
 }
+
+
 
 
 ///////// Legacy interfaces below //////////////////

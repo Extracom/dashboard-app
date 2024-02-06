@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
-import useFetchData from '../hooks/useFetchData';
-import useCreateData from '../hooks/useCreateData';
+import useFetchData from '../../hooks/useFetchData';
+import useCreateData from '../../hooks/useCreateData';
 import { Button, Stack, Alert, Container, LinearProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Video, blankVideo } from '../interfaces/interfaces';
+import { Video, blankVideo } from '../../interfaces/interfaces';
 import { useLocation } from 'react-router-dom';
-import { QuickTextField, QuickDateField, QuickSelectField, PropagateToChildren, Option } from './QuickComponents';
+import { QuickTextField, QuickDateField, QuickSelectField, PropagateToChildren, Option } from '../QuickComponents';
 //import { convertDateFormat } from "../utils";
 
 

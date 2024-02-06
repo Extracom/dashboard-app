@@ -17,10 +17,6 @@ const SignIn: React.FC = () => {
     const [errors, setErrors] = useState<Credentials>({ email: '', password: '' });
     const [submitted, setSubmitted] = useState(false);
 
-    // const [signIn, setSignIn] = useState<SignInFields>(blankSignInFields());
-    // //const [errors, setErrors] = useState<SignInFields>(blankSignInFields());
-
-    // const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -38,31 +34,6 @@ const SignIn: React.FC = () => {
             navigate(`/`);
         }
 
-        // setIsLoading(true);
-
-        // signIn.UserTable = "Users";
-        // signIn.UserNameField = "Email";
-        // signIn.PasswordField = "Pin";
-
-        // const response = await fetch('https://7udlon6f8l.execute-api.us-east-1.amazonaws.com/dev/api/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(signIn)
-        // });
-
-        // if (response.status !== 200) {
-        //     errors.Password = 'Email or password is incorrect';
-        //     setErrors(errors);
-
-        // } else {
-        //     const data = await response.json();
-        //     localStorage.setItem('bus_app_token', data.token);
-        //     navigate(`/`);
-        // }
-
-        // setIsLoading(false);
     };
 
     useEffect(() => {
