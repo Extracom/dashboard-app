@@ -1,11 +1,12 @@
-import React, { Key } from 'react';
-
+import React, { Key, useState } from 'react';
 import useFetchDashboardData from '../hooks/useFetchDashboardData';
 import { Box, LinearProgress } from '@mui/material';
 import ResponsiveGrid from '../components/ResponsiveGrid';
+import Filter from '../components/Filter';
 import MutationsBarChart from '../charts/MutationsBarChart';
 import MutationsGaugeChart from '../charts/MutationsGaugeChart';
 import MutationsHeatmapChart from '../charts/MutationsHeatmapChart';
+import { DashboardFilter } from '../interfaces/interfaces';
 
 
 // interface ComponentState {
@@ -15,70 +16,23 @@ import MutationsHeatmapChart from '../charts/MutationsHeatmapChart';
 // }
 
 const HomeComponent: React.FC = () => {
-    // const [state, setState] = useImmer<ComponentState>({
-    //     quotes: [],
-    //     todaysFocus: [],
-    //     isLoading: false,
-    // });
-    //const token = decodeToken();
-    const { data, error, loading } = useFetchDashboardData({
+
+    const [filter, setFilter] = useState<DashboardFilter>({
         fromDate: new Date("2023-09-01"),
-        toDate: new Date("2024-05-01") // replace with the actual toDate
+        toDate: new Date()
     });
+
+    const { data, error, loading } = useFetchDashboardData(filter);
+    // const { data: quotesData, error: quotesError, loading: quotesLoading } = useFetc));
     // const { data: todaysFocusData, error: todaysFocusError, loading: todaysFocusLoading } = useFetchData(`/Todays Focus`, `todaysFocus`);
 
-    // useEffect(() => {
-    //     if (!token || !token["Email"] || token["Email"].length === 0) {
-    //         console.error('No email in token');
-    //         return;
-    //         //   throw new Error('No email in token');
-    //     }
-    //     const filteredData = quotesData?.filter((item: Quote) =>
-    //         item["Related Users"] && item["Related Users"].includes(token["Email"])
-    //     );
-    //     setState((draft) => {
-    //         draft.quotes = filteredData as Quote[] || [];
-    //     });
-    // }, [quotesData]);
-
-    // useEffect(() => {
-    //     if (!token || !token["Email"] || token["Email"].length === 0) {
-    //         console.error('No email in token');
-    //         return;
-    //         //   throw new Error('No email in token');
-    //     }
-    //     const filteredData = todaysFocusData?.filter((item: TodaysFocus) =>
-    //         item["Related Users"] && item["Related Users"].includes(token["Email"])
-    //     );
-    //     setState((draft) => {
-    //         draft.todaysFocus = filteredData as TodaysFocus[] || [];
-    //     });
-    // }, [todaysFocusData]);
-
-    // useEffect(() => {
-    //     setState((draft) => {
-    //         draft.isLoading = quotesLoading || todaysFocusLoading;
-    //     });
-    // }, [quotesLoading, todaysFocusLoading]);
-
-    // useEffect(() => {
-    //     if (quotesError) {
-    //         console.error('Error fetching Quotes data:', quotesError);
-    //     }
-    // }, [quotesError]);
-
-    // useEffect(() => {
-    //     if (todaysFocusError) {
-    //         console.error('Error fetching Todays Focus data:', todaysFocusError);
-    //     }
-    // }, [todaysFocusError]);
 
 
     return (
         <>
             {loading && <LinearProgress />}
-
             <ResponsiveGrid>
+                <Filter wide={true} noRatio={true} filter={filter} setFilter={setFilter} />
                 {data && data.users && data.users.length > 0 && data.users.map((user: string, index: Key) =>
                     <MutationsGaugeChart key={index} data={data ? data : null} user={user} />
                 )}

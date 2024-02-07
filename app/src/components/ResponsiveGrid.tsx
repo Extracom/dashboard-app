@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Grid, Card, CardContent, Box } from '@mui/material';
+import { Container, Grid, Card, Box } from '@mui/material';
+import theme from '../styles/theme'; // Import the custom theme
 
 interface ComponentProps {
     children: React.ReactNode;
@@ -33,19 +34,24 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
         width: '100%'
     };
 
+    const noBoxRatios = {
+        width: '100%'
+    };
+
     return (
         <Container component="main" maxWidth="lg" sx={{ mt: 2, mb: 2 }}>
             <Grid container spacing={2}>
                 {childrenArray.map((child, index) => {
                     const wide = (child as React.ReactElement<{ wide?: boolean }>).props.wide;
+                    const noRatio = (child as React.ReactElement<{ noRatio?: boolean }>).props.noRatio;
                     return (
                         <Grid item {...(wide ? wideGridProps : narrowGridProps)} key={index}>
-                            <Card sx={{ borderRadius: '24px', boxShadow: 1 }}>
-                                <CardContent>
-                                    <Box sx={(wide ? wideBoxRatios : narrowBoxRatios)}>
-                                        {child}
-                                    </Box>
-                                </CardContent>
+                            <Card sx={{ ...theme.cards.primary }}>
+                                {/* <CardContent  > */}
+                                <Box sx={(noRatio ? noBoxRatios : (wide ? wideBoxRatios : narrowBoxRatios))}>
+                                    {child}
+                                </Box>
+                                {/* </CardContent> */}
                             </Card>
                         </Grid>
                     );

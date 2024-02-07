@@ -32,7 +32,7 @@ const useFetchDashboardData = (filter?: DashboardFilter) => {
 
     useEffect(() => {
         refreshData(filter);
-    }, []);
+    }, [JSON.stringify(filter)]);
 
     useEffect(() => {
         if (mutationData && mutationData.data) {

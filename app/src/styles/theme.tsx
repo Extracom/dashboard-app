@@ -33,6 +33,17 @@ const theme = createTheme({
         },
         // You can define more box styles here...
     },
+    cards: {
+        primary: {
+            borderRadius: '8px',
+            boxShadow: 1,
+            border: 1,
+            borderColor: 'rgb(230,235,241)',
+            p: 2,
+            //paddingBottom: '24px'
+            //transition: 'box-shadow 300ms ease-in-out'
+        },
+    },
     iconButtons: {
         appBar: {
             color: 'inherit',
