@@ -17,9 +17,13 @@ import { DashboardFilter } from '../interfaces/interfaces';
 
 const HomeComponent: React.FC = () => {
 
+    const upperDate = new Date();
+    let lowerDate = new Date();
+    lowerDate.setDate(lowerDate.getDate() - 15);
+
     const [filter, setFilter] = useState<DashboardFilter>({
-        fromDate: new Date("2023-09-01"),
-        toDate: new Date()
+        fromDate: lowerDate,
+        toDate: upperDate
     });
 
     const { data, error, loading } = useFetchDashboardData(filter);

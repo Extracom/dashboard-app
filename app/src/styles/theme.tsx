@@ -43,6 +43,15 @@ const theme = createTheme({
             //paddingBottom: '24px'
             //transition: 'box-shadow 300ms ease-in-out'
         },
+        square: {
+            borderRadius: '8px',
+            boxShadow: 1,
+            border: 1,
+            borderColor: 'rgb(230,235,241)',
+            p: 0,
+            //paddingBottom: '24px'
+            //transition: 'box-shadow 300ms ease-in-out'
+        },
     },
     iconButtons: {
         appBar: {

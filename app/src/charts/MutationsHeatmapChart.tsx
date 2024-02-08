@@ -20,7 +20,7 @@ const Component: React.FC<ComponentProps> = ({ data }) => {
         grid: {
             // height: '50%',
             // y: '10%'
-            left: '28px',
+            left: '8%',
             right: '6px',
             top: '12px',
             bottom: '72px'
@@ -49,7 +49,7 @@ const Component: React.FC<ComponentProps> = ({ data }) => {
             },
             axisLine: { show: false },
             axisLabel: {
-                rotate: 90,
+                rotate: 0,
                 margin: 5,
                 interval: 0,
 

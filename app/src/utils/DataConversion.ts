@@ -61,3 +61,56 @@ export function aggregateMutations(data: CustomData): CustomData {
     }
 
 }
+
+
+export function aggregateMutations2(data: CustomData): CustomData {
+
+
+    const userSet = Object.keys(data);
+
+
+    // Extract all unique dates
+    let dates: string[] = [];
+    for (const key in data) {
+        dates = [...dates, ...Object.keys(data[key])];
+    }
+    const dateSet = new Set(dates);
+
+    const usersArray = [...userSet];
+    const datesArray = [...dateSet].sort();
+
+    let heatmapData = (datesArray as string[]).flatMap(date =>
+        (usersArray as string[]).map(user => [date, user, data[user][date] || 0])
+    );
+
+    let groupedDataByDate: { [key: string]: number } = {};
+
+    for (let user in data) {
+        for (let date in data[user]) {
+            if (groupedDataByDate[date]) {
+                groupedDataByDate[date] += data[user][date];
+            } else {
+                groupedDataByDate[date] = data[user][date];
+            }
+        }
+    }
+
+
+
+    const groupedDataByDateArray = Object.entries(groupedDataByDate);
+
+    // Sort the array by date in ascending order
+    const sortedGroupedDataArray = groupedDataByDateArray.sort((a, b) => {
+        return new Date(a[0]).getTime() - new Date(b[0]).getTime();
+    });
+
+    return {
+        users: usersArray,
+        dates: datesArray,
+        mutationsByUserAndDate: data,
+        mutationsByDate: groupedDataByDate,
+        dateMutationsDual: sortedGroupedDataArray,
+        heatmap: heatmapData,
+    }
+
+}

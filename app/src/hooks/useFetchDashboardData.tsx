@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { DashboardFilter } from '../interfaces/interfaces';
 import useFetchData from '../hooks/useFetchData';
-import { aggregateMutations } from '../utils/DataConversion';
+import { aggregateMutations2 } from '../utils/DataConversion';
 
 
 const useFetchDashboardData = (filter?: DashboardFilter) => {
@@ -22,7 +22,9 @@ const useFetchDashboardData = (filter?: DashboardFilter) => {
             body["to"] = filter.toDate.toISOString().slice(0, 10);
         }
         // Call the refreshData function for mutations, async
-        refreshMutationData(`/stockmutation/list`, body);
+        // refreshMutationData(`/stockmutation/list`, body);
+        setError(null);
+        refreshMutationData(`/mutationsummary`, body);
         // Do something with the data, error, and loading values from useFetchData
         // setData(mutationData);
         // setError(mutationError);
@@ -35,9 +37,15 @@ const useFetchDashboardData = (filter?: DashboardFilter) => {
     }, [JSON.stringify(filter)]);
 
     useEffect(() => {
-        if (mutationData && mutationData.data) {
-            setData(aggregateMutations(mutationData.data));
+        if (mutationData) {
+            setData(aggregateMutations2(mutationData));
         }
+        // if (mutationData) {
+        //     setData(aggregateMutations(mutationData.data));
+        // }
+        // if (mutationData && mutationData.data) {
+        //     setData(aggregateMutations(mutationData.data));
+        // }
     }, [mutationData]);
 
     useEffect(() => {

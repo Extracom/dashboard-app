@@ -10,7 +10,7 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
     // Convert children to an array
     const childrenArray = React.Children.toArray(children);
 
-    const narrowGridProps = { xs: 12, sm: 6, md: 3, lg: 3 };
+    const narrowGridProps = { xs: 12, sm: 6, md: 3, lg: 2, xl: 1.5 };
     const wideGridProps = { xs: 12, sm: 12, md: 12, lg: 12 };
 
     const wideBoxRatios = {
@@ -31,7 +31,8 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
 
     const narrowBoxRatios = {
         aspectRatio: '1/1',
-        width: '100%'
+        width: '100%',
+
     };
 
     const noBoxRatios = {
@@ -39,14 +40,14 @@ const Component: React.FC<ComponentProps> = ({ children }) => {
     };
 
     return (
-        <Container component="main" maxWidth="lg" sx={{ mt: 2, mb: 2 }}>
+        <Container maxWidth={false} sx={{ mt: 2, mb: 2 }}>
             <Grid container spacing={2}>
                 {childrenArray.map((child, index) => {
                     const wide = (child as React.ReactElement<{ wide?: boolean }>).props.wide;
                     const noRatio = (child as React.ReactElement<{ noRatio?: boolean }>).props.noRatio;
                     return (
                         <Grid item {...(wide ? wideGridProps : narrowGridProps)} key={index}>
-                            <Card sx={{ ...theme.cards.primary }}>
+                            <Card sx={{ ...(wide ? theme.cards.primary : theme.cards.square) }}>
                                 {/* <CardContent  > */}
                                 <Box sx={(noRatio ? noBoxRatios : (wide ? wideBoxRatios : narrowBoxRatios))}>
                                     {child}
