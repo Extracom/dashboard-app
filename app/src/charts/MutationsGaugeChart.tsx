@@ -67,6 +67,7 @@ const Component: React.FC<ComponentProps> = ({ data, user }) => {
                 type: 'gauge',
                 min: 0,     // Minimum scale value
                 max: maxScale,    // Maximum scale value
+                splitNumber: 8,
                 axisLine: {
                     lineStyle: {
                         width: -6,
@@ -78,7 +79,8 @@ const Component: React.FC<ComponentProps> = ({ data, user }) => {
                     }
                 },
                 axisLabel: {
-                    distance: 0,
+                    distance: -4,
+                    fontSize: 10,  // Adjust this to make the labels smaller
                     formatter: function (value: number) {
                         // Format the value as needed
                         return value.toFixed(0); // This will format the value to 0 decimal places
@@ -87,12 +89,12 @@ const Component: React.FC<ComponentProps> = ({ data, user }) => {
 
                 detail: {
                     valueAnimation: true,
-
+                    offsetCenter: [0, '36%'],
                     formatter: function (value: number) {
                         // Format the value as needed
                         return `${value} / ${averageQuantities}`; // This will format the value to 0 decimal places
                     },
-                    fontSize: 16
+                    fontSize: 12
                 },
                 data: [
                     {

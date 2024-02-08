@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Grid, Button, TextField } from '@mui/material';
+import { Grid, Button, TextField, Typography } from '@mui/material';
 //import theme from '../styles/theme'; // Import the custom theme
 import { DashboardFilter } from '../interfaces/interfaces';
 
@@ -16,6 +16,8 @@ const Component: React.FC<ComponentProps> = ({ filter, setFilter }) => {
     const [fromDate, setFromDate] = useState(filter.fromDate);
     const [toDate, setToDate] = useState(filter.toDate);
     const [isChanged, setIsChanged] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleFromDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFromDate(new Date(e.target.value));
@@ -29,8 +31,14 @@ const Component: React.FC<ComponentProps> = ({ filter, setFilter }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        if (fromDate >= toDate) {
+            setIsError(true);
+            setErrorMessage('From Date must be less than To Date');
+            return;
+        }
         setFilter({ ...filter, fromDate, toDate });
         setIsChanged(false);
+        setIsError(false);
     };
 
     return (
@@ -39,7 +47,7 @@ const Component: React.FC<ComponentProps> = ({ filter, setFilter }) => {
                 <Grid item>
                     <TextField
                         id="fromdate"
-                        label="From date"
+                        label="From Date"
                         type="date"
                         value={fromDate ? fromDate.toISOString().substring(0, 10) : ''}
                         onChange={handleFromDateChange}
@@ -50,12 +58,13 @@ const Component: React.FC<ComponentProps> = ({ filter, setFilter }) => {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        error={isError}
                     />
                 </Grid>
                 <Grid item>
                     <TextField
                         id="date2"
-                        label="To date"
+                        label="To Date"
                         type="date"
                         value={toDate ? toDate.toISOString().substring(0, 10) : ''}
                         onChange={handleToDateChange}
@@ -66,12 +75,15 @@ const Component: React.FC<ComponentProps> = ({ filter, setFilter }) => {
                         InputLabelProps={{
                             shrink: true,
                         }}
+                        error={isError}
                     />
                 </Grid>
+
                 <Grid item>
                     {isChanged && <Button onClick={handleSubmit}>Apply</Button>}
                 </Grid>
             </Grid>
+            {isError && <Typography color="error" sx={{ fontSize: '0.75rem', mt: 0.75 }}>{errorMessage}</Typography>}
         </form>
     );
 };
