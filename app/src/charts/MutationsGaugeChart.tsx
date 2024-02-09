@@ -63,7 +63,7 @@ const Component: React.FC<ComponentProps> = ({ data, user }) => {
 
         series: [
             {
-                name: 'Pressure',
+                name: 'Mutations',
                 type: 'gauge',
                 min: 0,     // Minimum scale value
                 max: maxScale,    // Maximum scale value
